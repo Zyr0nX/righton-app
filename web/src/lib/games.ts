@@ -50,12 +50,12 @@ export const deleteQuestions = async (id: number) => {
 };
 
 
-export const getGameImage = async (game: Game) => {
-  // TODO: replace this old implementation
-  // 
-  // for (let i = 1; i < 6; i++) {
-  //   if (game?.questions[i]?.image) return game?.questions[i]?.image;
-  // }
+export const getGameImage = (game: any) => {
+  const { questions } = game
+  
+  questions.find((question: { imageUrl: any; }) => {
+    return question.imageUrl
+  })
 
   return null;
 }

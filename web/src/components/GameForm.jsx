@@ -14,7 +14,6 @@ import ImageIcon from '@material-ui/icons/Image';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import CCSS from './CCSS';
-import { deleteQuestion } from '../graphql/mutations';
 
 const useStyles = makeStyles(theme => ({
   root: {
