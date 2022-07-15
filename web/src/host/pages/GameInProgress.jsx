@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import QuestionCard from "../components/QuestionCard";
 import FooterGameInProgress from '../components/FooterGameInProgress';
+import QuestionCardDetails from "../components/QuestionCardDetails";
 
 const ProgressBar = (props) => {
     const { bgcolor, completed } = props;
@@ -38,7 +39,8 @@ export default function GameInProgress({ questions: { items: questions }, curren
                 <progress value={15} max={24} class={classes.timebar1} />
                 <button>add time</button>
             </div>
-            <QuestionCard title={currentQuestion} />
+            {/* <QuestionCard title={currentQuestion} /> */}
+            <QuestionCardDetails question={currentQuestion} />
             <div>
                 {/* results and drop down bar goes here */}
             </div>
