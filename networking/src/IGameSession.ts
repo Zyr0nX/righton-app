@@ -1,4 +1,4 @@
-import { GameSessionState } from "./AWSMobileApi"
+import { GameSessionState, Team, Question } from "./AWSMobileApi"
 
 export interface IGameSession {
     id: String
@@ -6,11 +6,11 @@ export interface IGameSession {
     startTime?: string | null
     phaseOneTime: number
     phaseTwoTime: number
-    // teams: [Team]?
+    teams: [Team | null] 
     currentQuestionId?: number | null
     currentState: GameSessionState
     gameCode: number
-    // questions: [Question]?
+    questions: [Question]
     updatedAt: string
     createdAt: string
 }

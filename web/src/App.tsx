@@ -33,6 +33,7 @@ import GameInProgressContainer from './host/containers/GameInProgressContainer';
 
 
 
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -205,8 +206,8 @@ function App() {
             </Route>
 
             <Route path="/status/:gameID" component={StatusPageContainer} />  */}
-            <Route path="/host/:gameID" >
-              <StartGameContainer />   
+            <Route path="/host/:gameId" >
+              <StartGameContainer gameId={926}/>   
             </Route>
             <Route path="/game-in-progress/:gameID" >
               <GameInProgressContainer gameSessionId="123"/>

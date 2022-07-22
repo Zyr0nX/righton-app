@@ -2,6 +2,7 @@ import { IGameSession } from './IGameSession'
 import { IApiClient } from './IApiClient'
 import {
     GameSessionState,
+    GetGameSessionQuery,
     OnUpdateGameSessionSubscription,
     UpdateGameSessionInput,
     UpdateGameSessionMutation,
@@ -10,8 +11,10 @@ import {
 import { updateGameSession } from './graphql/mutations'
 import { Amplify, API, graphqlOperation } from "aws-amplify"
 import { GraphQLResult, GRAPHQL_AUTH_MODE } from "@aws-amplify/api"
-import { onUpdateGameSession } from './graphql'
+import { onUpdateGameSession, getGameSession } from './graphql'
 import awsconfig from "./aws-exports"
+import { Team, Question } from "./AWSMobileApi"
+
 
 Amplify.configure(awsconfig)
 
@@ -24,7 +27,7 @@ enum HTTPMethod {
 }
 
 interface GraphQLOptions {
-    input?: object
+    input?: object 
     variables?: object
     authMode?: GRAPHQL_AUTH_MODE
 }
@@ -78,8 +81,20 @@ export class ApiClient implements IApiClient {
             throw new Error("Failed to update the game session")
         }
 
-        return result.data.updateGameSession as IGameSession
+        return result.data.updateGameSession as unknown as IGameSession
     }
+
+    // async loadGameSession(gameId: any): Promise<IGameSession> {
+    //     let result = await this.callGraphQL<GetGameSessionQuery>(getGameSession,  gameId )
+
+    //     return result.data.getGameSession as unknown as IGameSession
+    // }
+
+    async getGameSession(gameId: any): Promise<IGameSession> {
+        let result = await API.graphql(graphqlOperation(getGameSession,  gameId )) as { data: any }
+        return result.data.getGameSession as unknown as IGameSession
+    }
+
 
     subscribeUpdateGameSession(callback: (result: IGameSession) => void) {
         return this.subscribeGraphQL<OnUpdateGameSessionSubscription>(
@@ -109,11 +124,11 @@ export class ApiClient implements IApiClient {
             startTime,
             phaseOneTime,
             phaseTwoTime,
-            // teams,
+            teams,
             currentQuestionId,
             currentState,
             gameCode,
-            // questions,
+            questions,
             updatedAt,
             createdAt
         } = subscription.onUpdateGameSession || {}
@@ -137,11 +152,11 @@ export class ApiClient implements IApiClient {
             startTime,
             phaseOneTime,
             phaseTwoTime,
-            // teams,
+            teams: teams?.items as [Team],
             currentQuestionId,
             currentState,
             gameCode,
-            // questions,
+            questions: questions?.items as [Question],
             updatedAt,
             createdAt
         }
@@ -154,3 +169,7 @@ export class ApiClient implements IApiClient {
 function isNullOrUndefined<T>(value: T | null | undefined): value is null | undefined {
     return value === null || value === undefined
 }
+
+
+
+

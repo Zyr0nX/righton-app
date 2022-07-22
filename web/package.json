@@ -1,5 +1,5 @@
 {
-  "name": "@righton/web",
+  "name": "web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -60,7 +60,7 @@
     "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
-    "extends": "react-app",
+    
     "overrides": [
       {
         "files": [

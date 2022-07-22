@@ -23,5 +23,10 @@
   "include": [
     "src",
     "host/StartGame.jsx"
-  ]
+  ],
+  "references": [
+    {
+        "path": "../networking"
+    }
+]
 }

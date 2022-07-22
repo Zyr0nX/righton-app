@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material'
-import { ApiClient, Environment, GameSessionState } from '@righton/networking'
+import { ApiClient, Environment, GameSessionState} from '@righton/networking'
 import { IGameSession } from '@righton/networking'
 
 function App() {
@@ -11,7 +11,13 @@ function App() {
   let apiClient = new ApiClient(Environment.Staging)
 
   useEffect(() => {
-    
+
+    //query game session
+    // apiClient.getGameSession(gameSessionId).then((response) => {
+    //   setGameSession(response)
+    //   console.log("res:", gameSession)
+    // })
+
     const subscription = apiClient.subscribeUpdateGameSession(gameSession => {
       console.log(gameSession.currentState)
     })
