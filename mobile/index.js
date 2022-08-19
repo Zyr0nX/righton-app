@@ -1,11 +1,8 @@
-import 'react-native-gesture-handler';
-import { AppRegistry } from 'react-native';
-import App from './App';
-import Amplify, { Auth } from 'aws-amplify';
-import awsExports from './aws-exports';
+import "react-native-gesture-handler";
+import { AppRegistry } from "react-native";
+import App from "./App";
+import Amplify from "aws-amplify";
 
-Amplify.configure({
-  Auth: awsExports
-})
+Amplify.configure;
 
-AppRegistry.registerComponent('righton', () => App);
+AppRegistry.registerComponent("righton", () => App);
